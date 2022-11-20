@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
 
-const connectDB = () => {
-  mongoose.connect(url, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: true,
-    useUnifiedTopology: true,
-  });
+const connectionString =
+  "mongodb+srv://ebp78:gGbang0458@belajarbang.6ybb0kg.mongodb.net/?retryWrites=true&w=majority";
+
+const connectDB = (url) => {
+  mongoose.connect(url);
 };
 
 module.exports = connectDB;

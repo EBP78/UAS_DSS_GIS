@@ -3,7 +3,7 @@ const app = express();
 const connectDB = require("./db/connect");
 const topsis = require("./routes/topsis");
 const port = process.env.PORT || 5000;
-require("dotenv").config;
+require("dotenv").config();
 
 // parse body
 app.use(express.urlencoded({ extended: false }));
@@ -14,7 +14,7 @@ const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
     app.listen(port, () => {
-      console.log(`server is listening on port ${port}`);
+      console.log(`server is listening on port ${port}...`);
     });
   } catch (error) {
     console.log(error);

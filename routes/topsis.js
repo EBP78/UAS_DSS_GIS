@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const { calculateTopsis } = require("../controllers/topsis");
+const { getResult } = require("../controllers/topsis");
 
-router.route("/").get(calculateTopsis);
+router.route("/").get(getResult);
 
 module.exports = router;

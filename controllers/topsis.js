@@ -4,7 +4,7 @@ const linearAlgebra = require("linear-algebra")(),
 
 const topsis = require("topsis");
 
-const calculateTopsis = (req, res) => {
+const calculateTopsis = (datax) => {
   let data = [
     [1, 0.8, 0.4],
     [1, 0.2, 0.2],
@@ -19,7 +19,16 @@ const calculateTopsis = (req, res) => {
   let index = data.indexOf(output) + 1;
 
   console.log(`${output} is the best, which is item number : ${index}`);
-  res.status(200).json({ success: true, best: output, index: index });
+  return { success: true, best: output, index: index };
 };
 
-module.exports = { calculateTopsis };
+const getResult = async (req, res) => {
+  // await db
+  // data into array
+  // calculateTopsis
+  // return result
+  output = calculateTopsis(11);
+  res.status(200).json(output);
+};
+
+module.exports = { getResult };
