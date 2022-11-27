@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const connectDB = require("./db/connect");
 const topsis = require("./routes/topsis");
+const main = require("./routes/main");
 const port = process.env.PORT || 5000;
 require("dotenv").config();
 
@@ -24,3 +25,4 @@ const start = async () => {
 start();
 
 app.use("/topsis", topsis);
+app.use("/data", main);
