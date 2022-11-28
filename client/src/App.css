@@ -72,3 +72,27 @@ tbody td:hover:before {
   background-color: #3b3486;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
+
+.Form-Data {
+  margin-top: 25px;
+  margin-bottom: 150px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  width: 100%;
+  padding: 25px;
+  border: 3px solid #fff;
+  border-radius: 10px;
+}
+
+.Form-Data label {
+  text-align: left;
+  display: block;
+}
+
+.Form-Data input {
+  width: 95%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid white;
+}

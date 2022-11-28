@@ -11,3 +11,8 @@ export const topsis = async () => {
   const result = axios.get(`${url}topsis`);
   return result;
 };
+
+export const insertData = async (data) => {
+  const res = await axios.post(`${url}data`, data);
+  return res;
+};
