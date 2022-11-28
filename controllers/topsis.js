@@ -1,34 +1,36 @@
 const linearAlgebra = require("linear-algebra")(),
   Vector = linearAlgebra.Vector,
   Matrix = linearAlgebra.Matrix;
-
+const datas = require("../models/data");
+const asyncWrapper = require("../middleware/async");
+const { createCustomError } = require("../errors/custom-error");
 const topsis = require("topsis");
 
-const calculateTopsis = (datax) => {
-  let data = [
-    [1, 0.8, 0.4],
-    [1, 0.2, 0.2],
-    [0.75, 0.2, 0.9],
-  ];
-
+const calculateTopsis = (data) => {
   let m = new Matrix(data);
-  let ia = ["min", "min", "max"];
-  let w = [0.15, 0.2, 0.2];
+  let ia = ["max", "max", "min", "max", "min"];
+  let w = [0.25, 0.1, 0.2, 0.15, 0.25];
 
-  let output = topsis.getBest(m, w, ia);
-  let index = data.indexOf(output) + 1;
+  let output = topsis.getResList(m, w, ia);
 
-  console.log(`${output} is the best, which is item number : ${index}`);
-  return { success: true, best: output, index: index };
+  // console.log(`${output} is the best, which is item number : ${index}`);
+  // return { success: true, best: output, index: index, data: data };
+  return output;
 };
 
-const getResult = async (req, res) => {
+const getResult = asyncWrapper(async (req, res) => {
   // await db
+  const data = await datas.find({});
   // data into array
+  let topsisData = [];
+  for (let i = 0; i < data.length; i++) {
+    topsisData.push(data[i].penilaian);
+  }
   // calculateTopsis
+  let output = calculateTopsis(topsisData);
+  // map jadi dapet datanya lagi (nama alternatif)
   // return result
-  output = calculateTopsis(11);
   res.status(200).json(output);
-};
+});
 
 module.exports = { getResult };
