@@ -30,7 +30,12 @@ const getResult = asyncWrapper(async (req, res) => {
   let output = calculateTopsis(topsisData);
   // map jadi dapet datanya lagi (nama alternatif)
   // return result
-  res.status(200).json(output);
+  let result = [];
+  for (let i = 0; i < 3; i++) {
+    let alternatif = data[output[i].index];
+    result.push(alternatif);
+  }
+  res.status(200).json(result);
 });
 
 module.exports = { getResult };
