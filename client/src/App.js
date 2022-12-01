@@ -1,15 +1,15 @@
 import "./App.css";
 import { getData, topsis, insertData } from "./api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const App = () => {
   const [data, setData] = useState([]);
-  const [alternatif, setAlternatif] = useState("");
-  const [luas, setLuas] = useState(0);
-  const [kelembapan, setKelembapan] = useState(0);
-  const [jarak, setJarak] = useState(0);
-  const [akses, setAkses] = useState(0);
-  const [harga, setHarga] = useState(0);
+  const alternatif = useRef();
+  const luas = useRef();
+  const kelembapan = useRef();
+  const jarak = useRef();
+  const akses = useRef();
+  const harga = useRef();
 
   useEffect(() => {
     getData().then((result) => {
@@ -39,8 +39,14 @@ const App = () => {
 
   const insert_data = async () => {
     const insertFromForm = await insertData({
-      alternatif: alternatif,
-      penilaian: [luas, kelembapan, jarak, akses, harga],
+      alternatif: alternatif.current.value,
+      penilaian: [
+        parseInt(luas.current.value),
+        parseInt(kelembapan.current.value),
+        parseInt(jarak.current.value),
+        parseInt(akses.current.value),
+        parseInt(harga.current.value),
+      ],
     });
     console.log(insertFromForm);
   };
@@ -75,57 +81,27 @@ const App = () => {
             <form onSubmit={insert_data} className="Form-Data">
               <label>
                 Nama Alternatif:
-                <input
-                  type="text"
-                  value={alternatif}
-                  onChange={(e) => setAlternatif(e.target.value)}
-                  onFocus={(e) => e.target.select()}
-                />
+                <input type="text" ref={alternatif} />
               </label>
               <label>
                 Luas:
-                <input
-                  type="text"
-                  value={luas}
-                  onChange={(e) => setLuas(parseInt(e.target.value))}
-                  onFocus={(e) => e.target.select()}
-                />
+                <input type="text" ref={luas} />
               </label>
               <label>
                 Kelembapan:
-                <input
-                  type="text"
-                  value={kelembapan}
-                  onChange={(e) => setKelembapan(parseInt(e.target.value))}
-                  onFocus={(e) => e.target.select()}
-                />
+                <input type="text" ref={kelembapan} />
               </label>
               <label>
                 Jarak Ke Toko:
-                <input
-                  type="text"
-                  value={jarak}
-                  onChange={(e) => setJarak(parseInt(e.target.value))}
-                  onFocus={(e) => e.target.select()}
-                />
+                <input type="text" ref={jarak} />
               </label>
               <label>
                 Akses Jalan:
-                <input
-                  type="text"
-                  value={akses}
-                  onChange={(e) => setAkses(parseInt(e.target.value))}
-                  onFocus={(e) => e.target.select()}
-                />
+                <input type="text" ref={akses} />
               </label>
               <label>
                 Harga:
-                <input
-                  type="text"
-                  value={harga}
-                  onChange={(e) => setHarga(parseInt(e.target.value))}
-                  onFocus={(e) => e.target.select()}
-                />
+                <input type="text" ref={harga} />
               </label>
               <button type="submit" className="Topsis-Btn">
                 Insert
