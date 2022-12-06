@@ -23,7 +23,6 @@ export const deleteData = async (id) => {
 };
 
 export const loginUser = async (name, pass) => {
-  const hasil = await axios.get(`${url}user/${name}/${pass}`);
-  console.log(`${url}user/${name}/${pass}`);
-  return hasil;
+  const hasil = await axios.get(`http://localhost:5000/user/${name}/${pass}`);
+  return hasil.data;
 };

@@ -112,3 +112,24 @@ tbody td:hover:before {
   background-color: #3b3486;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
+
+.logout {
+  background-color: #3f0071;
+  color: white;
+  font-weight: bold;
+  width: 150;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid black;
+  cursor: pointer;
+  position: absolute;
+  margin-top: 15px;
+  margin-right: 15px;
+  top: 0;
+  right: 0;
+}
+
+.logout:hover {
+  background-color: #3b3486;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}

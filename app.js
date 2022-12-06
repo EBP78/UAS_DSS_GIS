@@ -50,5 +50,5 @@ app.use(function (req, res, next) {
 });
 
 app.use("/topsis", topsis);
-app.use("/data", main);
 app.use("/user", user);
+app.use("/data", main);

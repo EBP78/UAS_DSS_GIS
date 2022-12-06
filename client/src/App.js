@@ -78,15 +78,13 @@ const App = () => {
       username.current.value,
       password.current.value
     );
-    // if (cobaLogin.data.success) {
-    //   window.sessionStorage.setItem("isLogin", "heh");
-    //   // window.location.reload(false);
-    // } else if (!cobaLogin.data.success) {
-    //   window.sessionStorage.setItem("isLogin", cobaLogin.data.success);
-    // }
-    // console.log(username.current.value);
-    // console.log(password.current.value);
-    // console.log(cobaLogin);
+    if (cobaLogin.success) {
+      window.sessionStorage.setItem("isLogin", cobaLogin.success);
+      window.location.reload(false);
+    } else if (!cobaLogin.success) {
+      window.sessionStorage.setItem("isLogin", cobaLogin.success);
+      alert("username / password salah");
+    }
   };
 
   const Judul = () => {
@@ -96,11 +94,19 @@ const App = () => {
     return <th>No</th>;
   };
 
+  const logout = () => {
+    window.sessionStorage.setItem("isLogin", false);
+    window.location.reload(false);
+  };
+
   const Asli = () => {
     return (
       <div className="App">
         <header className="App-header">
           <h1>TOPSIS MENCARI GUDANG TERBAIK</h1>
+          <button className="logout" onClick={() => logout()}>
+            logout
+          </button>
           <div className="Table-Container">
             <table className="Table-Mantap">
               <thead>
@@ -176,7 +182,7 @@ const App = () => {
                 </label>
                 <label>
                   Password:
-                  <input type="text" ref={password} />
+                  <input type="password" ref={password} />
                 </label>
                 <button type="submit" className="Topsis-Btn">
                   Login
