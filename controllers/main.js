@@ -12,9 +12,17 @@ const createData = asyncWrapper(async (req, res) => {
   res.status(201).json({ data });
 });
 
-
+const deleteData = asyncWrapper(async (req, res, next) => {
+  const { id: dataID } = req.params;
+  const data = await datas.findOneAndDelete({ _id: dataID });
+  if (!data) {
+    return next(createCustomError(`no data with id ${dataID}`, 404));
+  }
+  res.status(200).json(data);
+});
 
 module.exports = {
   getAllData,
   createData,
+  deleteData,
 };

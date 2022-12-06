@@ -96,3 +96,19 @@ tbody td:hover:before {
   margin: 10px 0;
   border: 1px solid white;
 }
+
+.btn-del {
+  background-color: #3f0071;
+  color: white;
+  font-weight: bold;
+  width: 50px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.btn-del:hover {
+  background-color: #3b3486;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}

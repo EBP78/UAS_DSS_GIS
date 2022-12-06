@@ -3,6 +3,7 @@ const app = express();
 const connectDB = require("./db/connect");
 const topsis = require("./routes/topsis");
 const main = require("./routes/main");
+const user = require("./routes/user");
 const port = process.env.PORT || 5000;
 require("dotenv").config();
 
@@ -50,3 +51,4 @@ app.use(function (req, res, next) {
 
 app.use("/topsis", topsis);
 app.use("/data", main);
+app.use("/user", user);
